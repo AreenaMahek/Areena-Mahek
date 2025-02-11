@@ -12,6 +12,11 @@ from trame.widgets import vuetify, trame, matplotlib
 server = get_server(client_type="vue2")
 state, ctrl = server.state, server.controller
 
+
+# ----------------------------------------------------------------------------- 
+# Table Creation 
+# -----------------------------------------------------------------------------
+
 if not hasattr(state, "table_items") or state.table_items is None:
     state.table_items = []
 
@@ -30,6 +35,10 @@ table = {
 "dense": True,
 "items_per_page": 5,
 }
+
+# ----------------------------------------------------------------------------- 
+# Add values in Table
+# -----------------------------------------------------------------------------
 
 def increase_values():
     
@@ -55,7 +64,7 @@ def figure_size():
         return {"figsize": (10, 6), "dpi": 80}
 
 # ----------------------------------------------------------------------------- 
-# Scatter Plot View 
+# Scatter Plot with MPL
 # ----------------------------------------------------------------------------- 
 
 def ScatterPlot():
@@ -76,6 +85,9 @@ def ScatterPlot():
 
     return fig
 
+# ----------------------------------------------------------------------------- 
+# Line Plot with MPL
+# -----------------------------------------------------------------------------
 
 def LinePlot():
     plt.close("all")
@@ -101,7 +113,7 @@ def LinePlot():
     return fig
 
 # -----------------------------------------------------------------------------
-# Change Charts 
+# Switch Charts
 # -----------------------------------------------------------------------------
 
 @state.change("active_figure", "figure_size")
@@ -109,7 +121,7 @@ def update_chart(active_figure, **kwargs):
     ctrl.update_figure(globals()[active_figure]())
 
 # -----------------------------------------------------------------------------
-# Remove Item
+# Remove Item from Table
 # -----------------------------------------------------------------------------
 
 def remove_item(value):
@@ -121,7 +133,7 @@ def remove_item(value):
 
 
 # ----------------------------------------------------------------------------- 
-# UI 
+# UI Layout
 # ----------------------------------------------------------------------------- 
 
 state.trame__title = "Trame with Matplotlib"
