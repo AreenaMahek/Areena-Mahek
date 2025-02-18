@@ -224,5 +224,5 @@ with SinglePageLayout(server) as layout:
 # ----------------------------------------------------------------------------- 
 
 if __name__ == "__main__":
-    server.start()
+    server.start()  #makes sure to run only on execution, launches the trame server
     
