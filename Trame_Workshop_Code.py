@@ -157,8 +157,9 @@ with SinglePageLayout(server) as layout:
                     
                 ],
             ),
-            hide_details=True,
+            label="Select Chart",
             dense=True,
+            style="margin-top: 15px",
         )
 
     with layout.content:
@@ -180,7 +181,7 @@ with SinglePageLayout(server) as layout:
 
                     with vuetify.VRow(classes="justify-center"):
                         
-                            with vuetify.VDataTable(**state.table, style="margin-top: 40px"):
+                            with vuetify.VDataTable(**state.table, style="margin-top: 40px"): #  ** for unpacking the dictionary values
                                     
                                     with vuetify.Template(actions="{ item }",__properties=[("actions", "v-slot:item.actions")],):
                                         vuetify.VIcon("mdi-close-thick", color="red" ,click=(remove_item, "[item.values1, item.values2]"),)
@@ -214,8 +215,8 @@ with SinglePageLayout(server) as layout:
                                         )  
                     
                 with vuetify.VCol(cols=7):
-                    html_figure = matplotlib.Figure(style="position: absolute,padding-top: 30px",)
-                    ctrl.update_figure = html_figure.update
+                    html_figure = matplotlib.Figure(style="position: absolute,padding-top: 30px",) # create the matplotlib figure
+                    ctrl.update_figure = html_figure.update   # whenever the figure is updated, the update function is called
                 
                                                     
 # ----------------------------------------------------------------------------- 
